@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'De Novo Transcriptome Assembly'
+copyright = '2025, Austin'
+author = 'Austin'
 
 release = '0.1'
 version = '0.1.0'
