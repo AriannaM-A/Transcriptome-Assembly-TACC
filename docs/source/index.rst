@@ -5,8 +5,8 @@ Welcome to Transcriptome Assembly TACC’s documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
-   data
-   tools
-   methods
-   results
+  introduction
+  data
+  tools
+  methods
+  results
