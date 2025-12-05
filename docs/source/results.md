@@ -9,4 +9,4 @@ These are the results of the project including benchmarking for the transcriptom
 | BUSCO Duplicated | 12                                     | 3                        | 25                          | 16                           |                 |
 | BUSCO Fragmented | 2                                      | 12                       | 1                           | 5                            |                 |
 | BUSCO Missing    | 3                                      | 64                       | 0                           | 0                            |                 |
-| Mapped Reads     |                                        |                          |                             |                              |                 |
+| Annotated Transcripts (%)     |                64.14                        |                          |                  31.13           |           26.74                   |                 |
