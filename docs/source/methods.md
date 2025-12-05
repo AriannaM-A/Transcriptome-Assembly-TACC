@@ -20,6 +20,3 @@ Functional annotation was performed with **EnTAP**, which integrates homology se
 
 #### Assembly Completeness Assessment
 Completeness of the assembled transcriptome was evaluated using **BUSCO**, applying an appropriate eukaryotic or algal lineage dataset. BUSCO scores were calculated based on the presence of expected single-copy orthologs, providing an independent measure of assembly quality.
-
-#### Containerization and Reproducibility
-All major software tools were executed through **Apptainer/Singularity** containers to ensure reproducibility, version stability, and portability within the HPC environment. Containers were invoked using standardized version tags to guarantee that all analyses can be replicated using identical computational conditions.
