@@ -1,4 +1,4 @@
-**Assembly Input Selection**
+Assembly Input Selection
 ------------------------------
 SRR22322224
 
