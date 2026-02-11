@@ -8,6 +8,6 @@ Welcome to Transcriptome Assembly TACC’s documentation!
   introduction
   metadata
   assembly input selection
-  tools
   methods
+  tools
   results
