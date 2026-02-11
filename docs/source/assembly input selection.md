@@ -1,5 +1,5 @@
 Assembly Input Selection
-------------------------------
+-
 SRR22322224
 
 SRR22322220
