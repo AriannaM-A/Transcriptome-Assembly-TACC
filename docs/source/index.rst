@@ -6,6 +6,7 @@ Welcome to Transcriptome Assembly TACC’s documentation!
    :caption: Contents:
 
   introduction
+  metadata
   tools
   methods
   results
