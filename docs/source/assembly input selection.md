@@ -1,13 +1,11 @@
 Assembly Input Selection
 -
-SRR22322224
 
-SRR22322220
-
-SRR22322213
-
-SRR22322206
-
-SRR22322190
-
-SRR22322179
+| Run | BioProject | Treatment | Million Seqs |
+|---|---|---|---|
+|SRR22322224|PRJNA902753|Acclimated to full light| 42.4 |
+|SRR22322220|PRJNA902753|6h of darkness| 9.4 |
+|SRR22322213|PRJNA902753|3 days of darkness| 13.8 |
+|SRR22322206|PRJNA902753|2 months in darkness| 13.6 |
+|SRR22322190|PRJNA902753|6h after the light return| 10.9 |
+|SRR22322179|PRJNA902753|30 min after the light return| 13.6 |
