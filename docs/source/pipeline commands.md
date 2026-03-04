@@ -40,7 +40,7 @@ module load biocontainers
 module load cd-hit/ctr-4.6.8--0
 
 module load mmseqs2/ctr-7.4e23d--h21aa3a5_1
-
+```
 ### Apptainer Tools
 
 #### BUSCO - Pulled directly from Docker:
@@ -60,10 +60,10 @@ After building, the resulting image is used as entap.sif. Refer to the [EnTAP do
 Download raw sequencing data from NCBI's Sequence Read Archive and convert to FASTQ format.
 
 ```
-# Prefetch SRA files from an accession list
+#Prefetch SRA files from an accession list
 prefetch --option-file <ACCESSION_FILE> -O <SRA_DIR>
 
-# Convert each .sra file to paired-end FASTQ and compress
+#Convert each .sra file to paired-end FASTQ and compress
 find <SRA_DIR> -name "*.sra" | while read file; do
     name=$(basename $file .sra)
     # Dump to FASTQ with 16 threads; custom deflines for downstream compatibility
@@ -82,9 +82,9 @@ done
 Trim adapters and filter low-quality reads with FASTP and generate a combined QC report with MultiQC
 
 ```
-# Run fastp via the project's Python wrapper script
-# -i: input directory   -o: output directory   -r: report directory
-# -1 / -2: mate pair suffixes   -c: tool name for report naming
+#Run fastp via the project's Python wrapper script
+#-i: input directory   -o: output directory   -r: report directory
+#-1 / -2: mate pair suffixes   -c: tool name for report naming
 python <PY_FILE> \
     -i <FASTQ_DIR> \
     -o <TRIMMED_DIR> \
@@ -92,7 +92,7 @@ python <PY_FILE> \
     -1 _1 -2 _2 \
     -c fastp
 
-# Aggregate all fastp reports into a single MultiQC report
+#Aggregate all fastp reports into a single MultiQC report
 multiqc <REPORT_DIR> -o <PROJECT_ROOT>/multiqc_report -s
 ```
 
@@ -100,7 +100,7 @@ multiqc <REPORT_DIR> -o <PROJECT_ROOT>/multiqc_report -s
 De novo transcriptome assembly using Trinity. See [documentation](https://github.com/trinityrnaseq/trinityrnaseq/wiki) for complete configuration options.
 
 ```
-# Run Trinity on paired-end reads
+#Run Trinity on paired-end reads
 Trinity --seqType fq \
         --max_memory 800G \
         --left <TRIMMED_DIR>/pooled_6_1.fastq.gz \
@@ -113,7 +113,7 @@ Trinity --seqType fq \
 De novo transcriptome assembly using Spades. See [documentation](https://ablab.github.io/spades/) for complete configuration options.
 
 ```
-# Run rnaSPAdes
+#Run rnaSPAdes
 rnaspades.py \
     -1 pooled_6_1.fastq.gz \
     -2 pooled_6_2.fastq.gz \
@@ -128,13 +128,13 @@ Both cd-hit and MMseqs2 were used to cluster and remove redundant transcripts fr
 
 **CD-hit**
 ```
-# Cluster at default 90% identity threshold
+#Cluster at default 90% identity threshold
 cd-hit -i <ASSEMBLY_FASTA> -o <ASSEMBLY_CDHIT_FASTA> -M 100 -T 0
 ```
 
 **mmseqs**
 ```
-# Cluster at 90% identity and 90% coverage
+#Cluster at 90% identity and 90% coverage
 mmseqs easy-cluster <ASSEMBLY_FASTA> <OUTPUT_PREFIX> <TEMP_DIR> \
     --min-seq-id 0.90 \
     -c 0.90 --cov-mode 1 \
@@ -146,7 +146,7 @@ mmseqs easy-cluster <ASSEMBLY_FASTA> <OUTPUT_PREFIX> <TEMP_DIR> \
 Assess assembly completeness against a lineage-specific ortholog database.
 
 ```
-# Run BUSCO in transcriptome mode against the bacillariophyta (diatom) database
+#Run BUSCO in transcriptome mode against the bacillariophyta (diatom) database
 apptainer exec busco_latest.sif busco \
     --mode tran \
     -l bacillariophyta_odb12 \
@@ -159,7 +159,7 @@ apptainer exec busco_latest.sif busco \
 Functional annotation of assemblies using EnTAP.
 
 ```
-# Run EnTAP
+#Run EnTAP
 apptainer exec entap.sif EnTAP \
     --run \
     --run-ini <PROJECT_ROOT>/assembly_run.params \
