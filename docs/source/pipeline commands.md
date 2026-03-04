@@ -20,6 +20,8 @@ module load pbgzip/ctr-2016.08.04--he4cf2ce_0
 
 #### Quality trimming and reporting
 ```
+module load biocontainers
+
 module load fastp/ctr-0.19.7--hdbcaa40_0
 
 module load multiqc/ctr-1.7--py_1
@@ -31,6 +33,13 @@ module load trinity/ctr-2.8.4--py36pl526h447964c_0
 
 module load spades/ctr-3.13.0--0
 ```
+#### Redundancy Filtering
+```
+module load biocontainers
+
+module load cd-hit/ctr-4.6.8--0
+
+module load mmseqs2/ctr-7.4e23d--h21aa3a5_1
 
 ### Apptainer Tools
 
@@ -114,7 +123,26 @@ rnaspades.py \
     --temp <TEMP_DIR>
 ```
 
-### 4. Quality Assessment — BUSCO
+### 4a. Redundancy Filtering
+Both cd-hit and MMseqs2 were used to cluster and remove redundant transcripts from each assembly.
+
+**CD-hit**
+```
+# Cluster at default 90% identity threshold
+cd-hit -i <ASSEMBLY_FASTA> -o <ASSEMBLY_CDHIT_FASTA> -M 100 -T 0
+```
+
+**mmseqs**
+```
+# Cluster at 90% identity and 90% coverage
+mmseqs easy-cluster <ASSEMBLY_FASTA> <OUTPUT_PREFIX> <TEMP_DIR> \
+    --min-seq-id 0.90 \
+    -c 0.90 --cov-mode 1 \
+    --cluster-mode 2 \
+    --threads 16
+```
+
+### 4b. Quality Assessment — BUSCO
 Assess assembly completeness against a lineage-specific ortholog database.
 
 ```
