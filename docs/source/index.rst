@@ -5,10 +5,10 @@ Welcome to Transcriptome Assembly TACC’s documentation!
    :maxdepth: 2
    :caption: Contents:
 
-  introduction
-  metadata
-  assembly input selection
-  methods
-  tools
-  pipeline commands
-  results
+   introduction
+   metadata
+   assembly input selection
+   methods
+   tools
+   pipeline commands
+   results
