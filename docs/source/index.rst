@@ -10,4 +10,5 @@ Welcome to Transcriptome Assembly TACC’s documentation!
   assembly input selection
   methods
   tools
+  pipeline commands
   results
