@@ -129,7 +129,7 @@ Both cd-hit and MMseqs2 were used to cluster and remove redundant transcripts fr
 **CD-hit**
 ```
 #Cluster at default 90% identity threshold
-cd-hit -i <ASSEMBLY_FASTA> -o <ASSEMBLY_CDHIT_FASTA> -M 100 -T 0
+cd-hit-est -i <ASSEMBLY_FASTA> -o <ASSEMBLY_CDHIT_FASTA> -M 1000000 -T 0 -c 0.90 -n 10 -d 0
 ```
 
 **mmseqs**
