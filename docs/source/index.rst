@@ -6,7 +6,6 @@ Welcome to Transcriptome Assembly TACC’s documentation!
    :caption: Contents:
 
    introduction
-   metadata
    assembly input selection
    methods
    tools
