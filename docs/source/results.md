@@ -1,6 +1,6 @@
 # Results
 
-## Assembly Statistics
+### Assembly Statistics
 
 | Metric | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
@@ -14,11 +14,11 @@
 | Q3 length (bp) | 1,174 | 1,604 | 1,584 |
 | N50 (bp) | 1,817 | 1,908 | 1,560 |
 
-## BUSCO Completeness Assessment
+### BUSCO Completeness Assessment
 
 BUSCO was run in transcriptome mode on the cd-hit filtered assemblies against two lineage datasets: Bacillariophyta (`bacillariophyta_odb12`, n=2,944) for clade-specific resolution and Stramenopiles (`stramenopiles_odb10`, n=100) for broader comparability with published diatom assemblies.
 
-### Bacillariophyta (`bacillariophyta_odb12`)
+#### Bacillariophyta (`bacillariophyta_odb12`)
 
 | Metric | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
@@ -29,7 +29,7 @@ BUSCO was run in transcriptome mode on the cd-hit filtered assemblies against tw
 | Missing (M) | 4.5% | 6.9% | 2.0% |
 | Total BUSCOs searched (n) | 2,944 | 2,944 | 2,944 |
 
-### Stramenopiles (`stramenopiles_odb10`)
+#### Stramenopiles (`stramenopiles_odb10`)
 
 | Metric | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
@@ -39,7 +39,7 @@ BUSCO was run in transcriptome mode on the cd-hit filtered assemblies against tw
 | Fragmented (F) | 2.0% | 4.0% | 2.0% |
 | Missing (M) | 0.0% | 1.0% | 3.0% |
 
-## Salmon Mapping Rates
+### Salmon Mapping Rates
 
 Reads from each sample were mapped back to all three references using `Salmon` in quasi-mapping mode with `--validateMappings`. Mapping rate indicates the percentage of reads that successfully aligned to the reference, serving as a measure of how well each reference captures the expressed transcript content.
 
@@ -53,35 +53,32 @@ Reads from each sample were mapped back to all three references using `Salmon` i
 | SRR22322179 | 30 min after light return | 88.7% | 95.1% | 28.8% |
 | **Average** | | **95.0%** | **94.4%** | **55.1%** |
 
-Both de novo assemblies achieved consistently high mapping rates (>92%), indicating comprehensive recovery of expressed transcripts. The gene models showed substantially lower mapping rates, which is expected as they represent predicted coding regions only and do not include UTRs, non-coding transcripts, or novel transcripts absent from the original genome annotation.
-
-## Functional Annotation (EnTAP)
+### Functional Annotation (EnTAP)
 
 EnTAP was run on the cd-hit filtered assemblies using `uniprot_sprot` for similarity searching and EggNOG for ortholog/gene family assignment. Results from the published *F. cylindrus* gene models (Mock et al., 2017) are included as a reference point.
 
-### Annotation Summary
+#### Annotation Summary
 
 | Metric | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
-| Total input sequences | `TBD` | `TBD` | 13,512 |
-| Retained after frame selection | `TBD` | `TBD` | 13,512 |
-| Complete ORFs | `TBD` | `TBD` | 74.5% |
-| Sequence search hits (UniProt) | `TBD` | `TBD` | 41.3% |
-| Informative hits | `TBD` | `TBD` | 39.6% |
-| EggNOG hits | `TBD` | `TBD` | 100% |
-| GO terms (UniProt) | `TBD` | `TBD` | 40.1% |
-| KEGG assignments (EggNOG) | `TBD` | `TBD` | 36.9% |
-| Protein domains (UniProt) | `TBD` | `TBD` | 36.5% |
-| Contaminants flagged | `TBD` | `TBD` | 0% |
+| Total annotated sequences | 19,595 | 17,497 | 13,512 |
+| Complete ORFs | 52.5% | 48.9% | 74.5% |
+| Sequence search hits (UniProt) | 33.2% | 31.2% | 41.3% |
+| Informative hits | 31.8% | 29.8% | 39.6% |
+| EggNOG hits | 100% | 100% | 100% |
+| GO terms (UniProt) | 32.4% | 30.4% | 40.1% |
+| KEGG assignments (EggNOG) | 43.7% | 43.7% | 36.9% |
+| Protein domains (UniProt) | 29.9% | 28.0% | 36.5% |
+| Contaminants flagged | 0% | 0% | 0% |
 
-### EggNOG Taxonomic Scope
+#### EggNOG Taxonomic Scope
 
 The proportion of transcripts mapping to Bacillariophyta-level orthologs in EggNOG provides an indicator of how well the assembly captures diatom-specific gene content.
 
 | Taxonomic Scope | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
-| Bacillariophyta | `TBD` | `TBD` | 61.6% |
-| Eukaryota | `TBD` | `TBD` | 16.9% |
-| Fungi | `TBD` | `TBD` | 2.5% |
-| Streptophyta | `TBD` | `TBD` | 2.3% |
-| Metazoa | `TBD` | `TBD` | 3.2% |
+| Bacillariophyta | 49.0% | 49.7% | 61.6% |
+| Eukaryota | 19.8% | 20.0% | 16.9% |
+| Fungi | 6.6% | 6.2% | 2.5% |
+| Streptophyta | 4.3% | 4.0% | 2.3% |
+| Metazoa | 4.4% | 4.3% | 3.2% |
