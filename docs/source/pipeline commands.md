@@ -146,14 +146,23 @@ mmseqs easy-cluster <ASSEMBLY_FASTA> <OUTPUT_PREFIX> <TEMP_DIR> \
 Assess assembly completeness against a lineage-specific ortholog database.
 
 ```
-#Run BUSCO in transcriptome mode against the bacillariophyta (diatom) database
+#Run BUSCO in transcriptome mode against the bacillariophyta (narrower) database
 apptainer exec busco_latest.sif busco \
     --mode tran \
     -l bacillariophyta_odb12 \
     -c 32 \
     -i <ASSEMBLY_FASTA> \
     -o <BUSCO_OUT_DIR>
+
+#Run BUSCO in transcriptome mode against the stramenopiles (broader) database
+apptainer exec busco_latest.sif busco \
+    --mode tran \
+    -l stramenopiles_odb10 \
+    -c 32 \
+    -i <ASSEMBLY_FASTA> \
+    -o <BUSCO_OUT_DIR>
 ```
+
 
 ### 5. Annotation — EnTAP
 Functional annotation of assemblies using EnTAP.
@@ -166,3 +175,60 @@ apptainer exec entap.sif EnTAP \
     --entap-ini <PROJECT_ROOT>/entap_config.ini \
     -t 32
 ```
+
+### 7. Transcript Quantification — Salmon
+
+Reads were mapped back to each assembly using `Salmon` in quasi-mapping mode to generate per-sample mapping rates and transcript abundance estimates.
+
+#### Build Index
+```bash
+# Load modules
+module load biocontainers
+module load salmon
+
+# Index the assembly
+salmon index -t  -i  -k 31
+```
+#### Quantify Per Sample
+```bash
+# Map each sample against the index
+for sample in SRR22322224 SRR22322220 SRR22322213 SRR22322206 SRR22322190 SRR22322179; do
+    salmon quant \
+        -i  \
+        -l A \
+        -1 /${sample}_1.fastq.gz \
+        -2 /${sample}_2.fastq.gz \
+        -o /${sample} \
+        --validateMappings \
+        -p 16
+done
+```
+#### Aggregate Reports
+```bash
+# Aggregate per-sample Salmon reports with MultiQC
+module load multiqc
+multiqc  -o  -n salmon_report
+```
+
+---
+
+### Placeholder Reference
+
+| Placeholder | Description |
+|---|---|
+| `<ACCESSION_FILE>` | Text file with one SRA accession per line |
+| `<SRA_DIR>` | Directory for prefetched `.sra` files |
+| `<FASTQ_DIR>` | Directory for raw FASTQ output |
+| `<TRIMMED_DIR>` | Directory for quality-trimmed FASTQ files |
+| `<TEMP_DIR>` | Scratch space for temporary files |
+| `<REPORT_DIR>` | Directory for fastp JSON/HTML reports |
+| `<PROJECT_ROOT>` | Top-level project directory |
+| `<PY_FILE>` | Path to the fastp Python wrapper script |
+| `<TRINITY_OUT_DIR>` | Trinity assembly output directory |
+| `<SPADES_OUT_DIR>` | rnaSPAdes assembly output directory |
+| `<ASSEMBLY_FASTA>` | Input FASTA file (e.g., `Trinity_cd-hit.fasta`, `Spades_cd-hit.fasta`) |
+| `<BUSCO_BACILLARIOPHYTA_OUT>` | BUSCO results directory (Bacillariophyta lineage) |
+| `<BUSCO_STRAMENOPILES_OUT>` | BUSCO results directory (Stramenopiles lineage) |
+| `<SALMON_INDEX_DIR>` | Salmon index directory for a given assembly |
+| `<SALMON_OUT_DIR>` | Parent directory for per-sample Salmon quantification output |
+| `<MULTIQC_SALMON_OUT>` | MultiQC output directory for Salmon reports |
