@@ -62,7 +62,10 @@ EnTAP was run on the cd-hit filtered assemblies using `uniprot_sprot` for simila
 | Metric | Trinity | rnaSPAdes | Gene Models (Mock et al., 2017) |
 |---|---|---|---|
 | Total annotated sequences | 19,595 | 17,497 | 13,512 |
-| Complete ORFs | 52.5% | 48.9% | 74.5% |
+| Total ORFs predicted | 33,132 | 35,567 | 50,758 |
+| Complete ORFs | 13,743 (41.5%) | 15,343 (43.1%) | 23,146 (45.6%) |
+| Internal ORFs | 8,625 (26.0%) | 8,796 (24.7%) | 11,065 (21.8%) |
+| Partial ORFs | 10,764 (32.5%) | 11,428 (32.1%) | 16,547 (32.6%) |
 | Sequence search hits (UniProt) | 33.2% | 31.2% | 41.3% |
 | Informative hits | 31.8% | 29.8% | 39.6% |
 | EggNOG hits | 100% | 100% | 100% |
