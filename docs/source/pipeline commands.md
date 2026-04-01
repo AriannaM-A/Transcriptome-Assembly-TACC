@@ -81,6 +81,16 @@ done
 ### 2. Quality Trimming 
 Trim adapters and filter low-quality reads with FASTP and generate a combined QC report with MultiQC
 
+#### Setup Notes
+On TACC, `fastp` is available as a biocontainer and is loaded as a shell function rather than a
+standard binary. Because the pipeline's Python wrapper invokes fastp via `subprocess`, it cannot
+inherit shell functions from the module environment. The full Singularity command must be passed
+explicitly via the `-c` flag instead of just `fastp`.
+
+Before running, ensure your fastq directory contains no hidden or empty files (e.g. `.fastq.gz`),
+as the wrapper script will attempt to process any file matching FASTQ extensions, including
+zero-byte hidden files.
+
 ```
 #Run fastp via the project's Python wrapper script
 #-i: input directory   -o: output directory   -r: report directory
@@ -90,7 +100,7 @@ python <PY_FILE> \
     -o <TRIMMED_DIR> \
     -r <REPORT_DIR> \
     -1 _1 -2 _2 \
-    -c fastp
+    -c "singularity exec ${BIOCONTAINER_DIR}/biocontainers/fastp/fastp-0.19.7--hdbcaa40_0.simg fastp"
 
 #Aggregate all fastp reports into a single MultiQC report
 multiqc <REPORT_DIR> -o <PROJECT_ROOT>/multiqc_report -s
