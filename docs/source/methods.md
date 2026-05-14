@@ -10,7 +10,7 @@ Initial quality assessment of raw reads was performed with `fastp`, which conduc
 De novo transcriptome assembly was performed using two independent assemblers to ensure robustness in transcript reconstruction. `Trinity` and `rnaSPAdes` were each used to assemble a transcriptome. These assemblies were then benchmarked against the predicted gene models published for *Fragilariopsis cylindrus* (Mock et al., 2017) to compare biological completeness between the two.
 
 ##### Redundancy Filtering
-Redundant transcripts were removed from each assembly using two independent clustering tools: `cd-hit` and `MMseqs2`. Both tools were run on both assemblies at a 90% sequence identity threshold, and results were compared to assess the effect of clustering method on downstream completeness and annotation.
+Redundant transcripts were removed from each assembly using `MMseqs2`. The tool was run on both assemblies at a 90% sequence identity threshold.
 
 ##### Transcript Quantification
 Transcript abundance estimation was carried out using `Salmon` in quasi-mapping mode. Reads were mapped back to the assembled transcriptome to generate TPM and count matrices for downstream QC and expression analysis.
