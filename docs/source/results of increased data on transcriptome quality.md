@@ -8,18 +8,18 @@ That left a follow-up question worth answering before declaring the project fini
 
 | Tier | Trinity | rnaSPAdes |
 |---|---|---|
-| 6  | Trinity built-in normalization | No normalization |
-| 12 | Trinity built-in normalization | No normalization |
-| 24 | Trinity built-in normalization | Trinity-normalized input |
+| 6  | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
+| 12 | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
+| 24 | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
 | 36 | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
 | 48 | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
 | 65 | BBNorm-normalized input (`--no_normalize_reads`) | BBNorm-normalized input |
 
-Trinity's built-in in-silico normalization is a known failure point at very large input scales, so for the 36-, 48-, and 65-sample tiers the reads were pre-normalized with BBNorm (target=100, min=5) and fed to Trinity with the `--no_normalize_reads` flag. BBNorm reduced the ~2.29 billion read pairs in the 65-sample input down to ~78.9 million pairs (~97% reduction), peaking at ~146 GB RAM on an ICX node. rnaSPAdes does not require normalization, but for tiers 36-65 it received the same BBNorm-normalized reads as Trinity so that the input was identical across assemblers.
+Trinity's built-in in-silico normalization is a known failure point at very large input scales, and Spades does not use a built in normalization tool, so the reads were pre-normalized with BBNorm (target=100, min=5) and fed to Trinity with the `--no_normalize_reads` flag. BBNorm reduced the ~2.29 billion read pairs in the 65-sample input down to ~78.9 million pairs (~97% reduction), peaking at ~146 GB RAM on an ICX node.
 
 ## Mapping & Evaluation Strategy
 
-For comparability across tiers of different input sizes, all five tiered assemblies were evaluated by mapping the **complete 65-sample read set** back against each one with `Salmon`, regardless of how many samples went into building that particular assembly. This differs from the pilot Results page, where the 6-sample assembly was evaluated against the 6 samples used to build it. Redundancy filtering was also switched from `cd-hit-est` to `MMseqs2` (90% identity, 90% coverage) for the tiered runs because MMseqs2 was substantially faster and more sensitive at scale.
+For comparability across tiers of different input sizes, all five tiered assemblies were evaluated by mapping the **complete 65-sample read set** back against each one with `Salmon`, regardless of how many samples went into building that particular assembly. This differs from the pilot Results page, where the 6-sample assembly was evaluated against the 6 samples used to build it.
 
 ---
 
@@ -52,8 +52,6 @@ For comparability across tiers of different input sizes, all five tiered assembl
 | Median length (bp) | 775 | 1,179 | 1,171 | 1,219 | 1,283 | 1,180 |
 | Q3 length (bp) | 1,604 | 2,226 | 2,280 | 2,344 | 2,413 | 2,326 |
 | N50 (bp) | 1,908 | 2,550 | 2,680 | 2,725 | 2,776 | 2,779 |
-
-> **Note:** The 6-sample assemblies were filtered with `cd-hit-est` at 90% identity; the tiered assemblies (12-65) were filtered with `MMseqs2` at 90% identity and 90% coverage.
 
 ---
 
