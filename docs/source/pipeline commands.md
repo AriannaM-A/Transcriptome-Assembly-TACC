@@ -180,7 +180,7 @@ apptainer exec entap.sif EnTAP \
 
 ### 7. Transcript Quantification — Salmon
 
-Reads were mapped back to each assembly using `Salmon` in quasi-mapping mode to generate per-sample mapping rates and transcript abundance estimates.
+Reads were mapped back to each assembly using `Salmon` to generate per-sample mapping rates and transcript abundance estimates.
 
 #### Build Index
 ```bash
