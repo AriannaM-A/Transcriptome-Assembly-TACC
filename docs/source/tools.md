@@ -14,8 +14,8 @@ The tools below are listed in the order they were used throughout the project, r
 - **SPAdes**  
 - **Trinity**
 
-#### Transcript Refinement & Coding Region Prediction
-- **TransDecoder**
+#### Transcript Clustering and Filtering
+- **MMseqs2** 
 
 #### Transcript Quantification
 - **Salmon** 
