@@ -27,12 +27,6 @@ module load fastp/ctr-0.19.7--hdbcaa40_0
 module load multiqc/ctr-1.7--py_1
 ```
 
-#### Assemblers
-```
-module load trinity/ctr-2.8.4--py36pl526h447964c_0
-
-module load spades/ctr-3.13.0--0
-```
 #### Redundancy Filtering
 ```
 module load biocontainers
@@ -41,6 +35,14 @@ module load mmseqs2/ctr-7.4e23d--h21aa3a5_1
 ```
 ### Apptainer Tools
 
+#### Assemblers - Pulled directly from Docker:
+```
+module load tacc-apptainer
+
+apptainer pull docker://trinityrnaseq/trinityrnaseq:2.15.2
+
+apptainer pull docker://staphb/spades:4.2.0
+```
 #### BUSCO - Pulled directly from Docker:
 ```
 module load tacc-apptainer
