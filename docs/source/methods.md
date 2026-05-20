@@ -13,7 +13,7 @@ De novo transcriptome assembly was performed using two independent assemblers to
 Redundant transcripts were removed from each assembly using `MMseqs2`. The tool was run on both assemblies at a 90% sequence identity threshold.
 
 ##### Transcript Quantification
-Transcript abundance estimation was carried out using `Salmon` in quasi-mapping mode. Reads were mapped back to the assembled transcriptome to generate TPM and count matrices for downstream QC and expression analysis.
+Transcript abundance estimation was carried out using `Salmon`. Reads were mapped back to the assembled transcriptome to generate TPM and count matrices for downstream QC and expression analysis.
 
 ##### Functional Annotation
 Functional annotation was performed with `EnTAP`, which integrates homology searches, protein domain identification, contaminant filtering, and Gene Ontology (GO) assignment.
