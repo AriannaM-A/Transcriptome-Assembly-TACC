@@ -49,7 +49,6 @@ module load tacc-apptainer
 
 apptainer pull docker://staphb/busco
 ```
-This creates ```busco_latest.sif``` in the current directory.
 
 #### EnTAP - Compiled from the [EnTAP GitLab](https://gitlab.com/PlantGenomicsLab/EnTAP) 
 
