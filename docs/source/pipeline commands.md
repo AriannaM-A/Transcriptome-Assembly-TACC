@@ -24,6 +24,8 @@ module load biocontainers
 
 module load fastp/ctr-0.19.7--hdbcaa40_0
 
+module load fastqc/ctr-0.11.8--1
+
 module load multiqc/ctr-1.7--py_1
 ```
 
