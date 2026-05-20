@@ -37,8 +37,6 @@ module load spades/ctr-3.13.0--0
 ```
 module load biocontainers
 
-module load cd-hit/ctr-4.6.8--0
-
 module load mmseqs2/ctr-7.4e23d--h21aa3a5_1
 ```
 ### Apptainer Tools
@@ -134,13 +132,7 @@ rnaspades.py \
 ```
 
 ### 4a. Redundancy Filtering
-Both cd-hit and MMseqs2 were used to cluster and remove redundant transcripts from each assembly.
-
-**CD-hit**
-```
-#Cluster at default 90% identity threshold
-cd-hit-est -i <ASSEMBLY_FASTA> -o <ASSEMBLY_CDHIT_FASTA> -M 1000000 -T 0 -c 0.90 -n 10 -d 0
-```
+MMseqs2 was used to cluster and remove redundant transcripts from each assembly.
 
 **mmseqs**
 ```
